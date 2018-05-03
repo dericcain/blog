@@ -1,33 +1,29 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import styled from 'styled-components';
 
-const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </div>
+import { primary, white } from '../assets/styles/colors'
+
+const Nav = styled.nav`
+  position: fixed;
+  width: 260px;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: ${primary};
+  padding: 18px;
+`;
+
+const SiteName = styled.h4`
+  color: ${white};
+  text-align: center;
+  font-weight: 300;
+`;
+
+const Header = () => (
+  <Nav>
+    <SiteName>Deric Cain</SiteName>
+  </Nav>
 )
 
 export default Header
