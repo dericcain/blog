@@ -1,8 +1,14 @@
 import React from 'react';
-import Spinner from 'react-spinkit';
+import styled from 'styled-components';
+
+import { red } from '../styles/colors';
+
+const LoaderText = styled.h4`
+  color: ${red.light};
+`;
 
 const Loading = ({ isActive }) => isActive
-  ? <Spinner name="pacman" color="goldenrod" />
+  ? <LoaderText>Loading...</LoaderText>
   : null;
 
 export default Loading;

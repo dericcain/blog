@@ -1,5 +1,15 @@
-export const primary = '#4c586f';
-export const secondary = '#cbc5c1';
-export const accent = '#a2aab0';
-export const white = '#ebeced';
-export const black = '#3e3e3b';
+export const white = '#F8DEE2';
+export const black = '#544B4D';
+
+export const red = {
+  dark: '#683E44',
+  default: '#9B5C66',
+  light: '#E78998',
+  lightest: '#E7CFD3',
+};
+
+export const grey = {
+  dark: '#796C6E',
+  default: '#AC999C',
+  light: '#cfbcbf',
+};
