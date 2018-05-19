@@ -1,10 +1,17 @@
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import { TypographyStyle, GoogleFont } from 'react-typography';
-import styled from 'styled-components';
+import styled, { injectGlobal } from 'styled-components';
 
+import { grey } from '../styles/colors';
 import typography from '../styles/typography';
 require('../styles/syntax.css');
+
+injectGlobal`
+  body {
+    border-top: 4px solid ${grey.default};
+  }
+`;
 
 const PageWrapper = styled.main`
   max-width: 768px;
@@ -12,6 +19,8 @@ const PageWrapper = styled.main`
   flex-direction: column;
   margin: 0 auto;
   padding: 32px 9px;
+  position: relative;
+  
 `;
 
 const Layout = ({ children, data }) => (

@@ -20,5 +20,12 @@ module.exports = {
         plugins: [{ resolve: `gatsby-remark-prismjs` }],
       },
     },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-58169396-1',
+        head: false,
+      },
+    },
   ],
 };
