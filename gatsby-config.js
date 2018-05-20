@@ -27,5 +27,24 @@ module.exports = {
         head: false,
       },
     },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'Deric Cain',
+        short_name: 'Deric Cain',
+        start_url: '/',
+        background_color: '#ffffff',
+        theme_color: '#683E44',
+        display: 'minimal-ui',
+        icon: 'src/images/icon.png',
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        cacheId: `dericcain.com-offline`,
+      },
+    },
+    `gatsby-plugin-netlify`,
   ],
 };
