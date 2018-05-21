@@ -35,8 +35,9 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
+    "build:functions": "netlify-lambda build ./src/raw-functions",
     "start": "gatsby develop",
-    "start:functions": "netlify-lambda serve ./src/functions",
+    "start:functions": "netlify-lambda serve ./src/raw-functions",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
