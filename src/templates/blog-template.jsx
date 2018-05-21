@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { pure } from 'recompose';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
 import BackIcon from 'react-icons/lib/io/android-arrow-back';

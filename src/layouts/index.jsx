@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
+import { pure } from 'recompose';
 import { TypographyStyle, GoogleFont } from 'react-typography';
 import styled, { injectGlobal } from 'styled-components';
 
@@ -45,7 +46,7 @@ const Layout = ({ children, data }) => (
   </Fragment>
 );
 
-export default Layout;
+export default pure(Layout);
 
 export const query = graphql`
   query SiteTitleQuery {
