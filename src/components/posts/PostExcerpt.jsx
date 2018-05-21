@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Link from 'gatsby-link';
 import { pure } from 'recompose';
 
+import format from 'date-fns/format'
 import { grey } from '../../styles/colors';
 
 const Excerpt = styled.article`
@@ -25,7 +26,7 @@ const Title = styled.h3`
 
 const Date = styled.span`
   display: flex;
-  flex: 1;
+  flex: 2;
   justify-content: flex-end;
   align-items: flex-start;
   font-size: 13px;
@@ -41,7 +42,7 @@ const PostExcerpt = ({ title, date, excerpt, path }) => (
       <Link to={path}>
         <Title>{title}</Title>
       </Link>
-      <Date>{date}</Date>
+      <Date>{format(date, `MMM D, 'YY`)}</Date>
     </Top>
     <Body>{excerpt}</Body>
   </Excerpt>

@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { pure } from 'recompose';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
 import BackIcon from 'react-icons/lib/io/android-arrow-back';
@@ -24,25 +25,20 @@ const BackButton = styled(BackIcon)`
   margin-bottom: 6px;
 `;
 
-export default function Template({ data }) {
-  const { markdownRemark } = data;
-  const { frontmatter, html } = markdownRemark;
-  return (
-    <Fragment>
-      <Title>{frontmatter.title}</Title>
-      <Date>{frontmatter.date}</Date>
-      <Divider>
-        <Link to="/">
-          <BackButton />
-        </Link>
-      </Divider>
-      <div
-        className="blog-post-content"
-        dangerouslySetInnerHTML={{ __html: html }}
-      />
-    </Fragment>
-  );
-}
+const Template = ({ data: { markdownRemark: { frontmatter, html } } }) => (
+  <Fragment>
+    <Title>{frontmatter.title}</Title>
+    <Date>{frontmatter.date}</Date>
+    <Divider>
+      <Link to="/">
+        <BackButton />
+      </Link>
+    </Divider>
+    <div className="blog-post-content" dangerouslySetInnerHTML={{ __html: html }} />
+  </Fragment>
+);
+
+export default pure(Template);
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {

@@ -1,4 +1,5 @@
-import React, { Component, Fragment } from 'react';
+import React, { Fragment } from 'react';
+import { pure } from 'recompose';
 import styled from 'styled-components';
 import GithubIcon from 'react-icons/lib/io/social-github';
 import TwitterIcon from 'react-icons/lib/io/social-twitter';
@@ -31,6 +32,7 @@ const StyledTwitterIcon = styled(TwitterIcon)`
   margin: 0 8px;
   color: ${grey.default};
 `;
+
 const StyledLinkedInIcon = styled(LinkedInIcon)`
   height: 26px;
   width: 26px;
@@ -38,43 +40,29 @@ const StyledLinkedInIcon = styled(LinkedInIcon)`
   color: ${grey.default};
 `;
 
+const IndexPage = ({ data: { allMarkdownRemark: { edges } }}) => {
+  const posts = edges.filter(edge => !!edge.node.frontmatter.date);
 
-export default class IndexPage extends Component {
-  state = {
-    gists: [],
-  };
+  return (
+    <Fragment>
+      <Header title="Some technical thoughts" subtitle="Javascript stuff by Deric Cain" />
+      <SocialIcons>
+        <a href="https://github.com/dericgw" target="_blank">
+          <StyledGithubIcon />
+        </a>
+        <a href="https://twitter.com/dericcain" target="_blank">
+          <StyledTwitterIcon />
+        </a>
+        <a href="https://www.linkedin.com/in/dericcain/" target="_blank">
+          <StyledLinkedInIcon />
+        </a>
+      </SocialIcons>
+      <Posts posts={posts} />
+    </Fragment>
+  );
+};
 
-  render() {
-    const {
-      data: {
-        allMarkdownRemark: { edges },
-      },
-    } = this.props;
-
-    const posts = edges.filter(edge => !!edge.node.frontmatter.date);
-
-    return (
-      <Fragment>
-        <Header
-          title="Some technical thoughts"
-          subtitle="Javascript stuff by Deric Cain"
-        />
-        <SocialIcons>
-          <a href="https://github.com/dericgw" target="_blank">
-            <StyledGithubIcon />
-          </a>
-          <a href="https://twitter.com/dericcain" target="_blank">
-            <StyledTwitterIcon />
-          </a>
-          <a href="https://www.linkedin.com/in/dericcain/" target="_blank">
-            <StyledLinkedInIcon />
-          </a>
-        </SocialIcons>
-        <Posts posts={posts} />
-      </Fragment>
-    );
-  }
-}
+export default pure(IndexPage);
 
 export const pageQuery = graphql`
   query IndexQuery {
