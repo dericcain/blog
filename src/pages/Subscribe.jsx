@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 
 const HoneypotField = styled.p`
@@ -10,29 +10,28 @@ const encode = data =>
     .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
     .join('&');
 
-class Subscribe extends PureComponent {
+class Subscribe extends Component {
   state = {
     email: '',
     'bot-field': '',
   };
 
-  handleSubmit = async e => {
-    try {
-      e.preventDefault();
-      await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'subscribe', ...this.state }),
+  handleSubmit = e => {
+    e.preventDefault();
+    fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'subscribe', ...this.state }),
+    })
+      .then(result => {
+        console.log(result);
+      })
+      .catch(error => {
+        throw new Error(error);
       });
-
-
-      // show message and then redirect
-    } catch (e) {
-      throw new Error(e);
-    }
   };
 
-  handleChange = ({ currentTarget }) => {
+  handleOnChange = ({ currentTarget }) => {
     this.setState({ [currentTarget.name]: currentTarget.value });
   };
 
