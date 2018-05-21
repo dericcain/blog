@@ -4,6 +4,7 @@ const URL = `https://api:${API_KEY}@api.mailgun.net/v3/subscribe.dericcain.com/l
 export function handler({ body: { payload, site }, isBase64Encoded }) {
   console.log(payload);
   console.log(URL);
+  console.log(isBase64Encoded);
   const { email } = payload;
   if (email) {
     console.log(email);
