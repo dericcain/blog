@@ -1,8 +1,9 @@
 const API_KEY = process.env.MAILGUN_API_KEY;
 const URL = `https://api:${API_KEY}@api.mailgun.net/v3/subscribe.dericcain.com/lists/followers@subscribe.dericcain.com/members`;
 
-exports.handler = ({ body }, context, callback) => {
-  console.log(body);
+exports.handler = ({ queryStringParameters, path }, context, callback) => {
+  console.log(queryStringParameters);
+  console.log(path);
 
   const email = body.payload.email;
 
