@@ -1,7 +1,7 @@
 const API_KEY = process.env.MAILGUN_API_KEY;
 const URL = `https://api:${API_KEY}@api.mailgun.net/v3/subscribe.dericcain.com/lists/followers@subscribe.dericcain.com/members`;
 
-export function handler({ body: { payload, site }, isBase64Encoded }, context, callback) {
+exports.handler = function ({ body: { payload, site }, isBase64Encoded }, context, callback) {
   console.log(payload);
   console.log(URL);
   console.log(isBase64Encoded);
