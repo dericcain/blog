@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-starter-default",
-  "description": "Gatsby default starter",
+  "name": "deric-cain-blog",
+  "description": "My Blog",
   "version": "1.0.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Deric Cain <deric.cain@gmail.com>",
   "dependencies": {
     "date-fns": "^1.29.0",
     "disqus-react": "^1.0.5",
@@ -30,7 +30,7 @@
     "typography": "^0.16.17"
   },
   "keywords": [
-    "gatsby"
+    "blog"
   ],
   "license": "MIT",
   "scripts": {
@@ -40,6 +40,9 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "prettier": "^1.12.0"
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "prettier": "^1.12.1"
   }
 }
