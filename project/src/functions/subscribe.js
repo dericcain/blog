@@ -85,9 +85,7 @@ function handler({ body: { payload, site }, isBase64Encoded }) {
     console.log(email);
     console.log(site);
   }
-};
-
-// https://api:key-0dec61ab03904da7a5b62dd26d415b28@api.mailgun.net/v3/subscribe.dericcain.com
+}
 
 /***/ })
 /******/ ])));
