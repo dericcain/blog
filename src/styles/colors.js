@@ -13,3 +13,5 @@ export const grey = {
   default: '#AC999C',
   light: '#cfbcbf',
 };
+
+export const green = '#27ae60';

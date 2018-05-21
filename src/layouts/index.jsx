@@ -10,7 +10,12 @@ require('../styles/syntax.css');
 
 injectGlobal`
   body {
+    height: 100vh;
     border-top: 4px solid ${grey.default};
+  }
+  
+  #___gatsby {
+    height: 100%;
   }
 `;
 
@@ -21,6 +26,7 @@ const PageWrapper = styled.main`
   margin: 0 auto;
   padding: 32px 9px;
   position: relative;
+  height: 100%;
   
 `;
 
