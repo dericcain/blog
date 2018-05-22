@@ -3,14 +3,15 @@ import Helmet from 'react-helmet';
 import { pure } from 'recompose';
 import { TypographyStyle, GoogleFont } from 'react-typography';
 import styled, { injectGlobal } from 'styled-components';
+import Link from 'gatsby-link';
 
-import { grey } from '../styles/colors';
+import { grey, red } from '../styles/colors';
 import typography from '../styles/typography';
 require('../styles/syntax.css');
 
 injectGlobal`
   body {
-    height: 100vh;
+    height: calc(100vh - 60px);
     border-top: 4px solid ${grey.default};
   }
   
@@ -27,7 +28,18 @@ const PageWrapper = styled.main`
   padding: 32px 9px;
   position: relative;
   height: 100%;
+`;
+
+const Footer = styled.footer`
+  display: flex;
+  height: 60px;
+  justify-content: center;
+  align-items: center;
   
+  a {
+    color: ${red.dark};
+    font-family: 'Lora', serif;
+  }
 `;
 
 const Layout = ({ children, data }) => (
@@ -44,6 +56,9 @@ const Layout = ({ children, data }) => (
     <PageWrapper>
       {children()}
     </PageWrapper>
+    <Footer>
+      <Link to="/subscribe">Wanna subscribe?</Link>
+    </Footer>
   </Fragment>
 );
 

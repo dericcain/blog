@@ -78,18 +78,29 @@ class Subscribe extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+
+    this.setState({
+      isSuccess: false,
+      buttonIsDisabled: true,
+    });
+
     fetch('/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({ 'form-name': 'subscribe', ...this.state }),
     })
-      .then(result => {
-        // Let the user know that they have signed up
-        console.log(result);
+      .then(() => {
+        this.setState({
+          isSuccess: true,
+          email: '',
+        });
       })
       .catch(error => {
         throw new Error(error);
-      });
+      })
+      .finally(() => {
+        this.setState({ buttonIsDisabled: false });
+      })
   };
 
   handleOnChange = ({ currentTarget }) => {
@@ -119,7 +130,9 @@ class Subscribe extends Component {
             <Input type="email" id="email" name="email" onChange={this.handleOnChange}/>
           </Label>
           <Button type="submit" disabled={this.state.buttonIsDisabled}>Sign up!</Button>
-          <SuccessMessage isActive={this.state.isSuccess}>You have been added to the list!</SuccessMessage>
+          <SuccessMessage isActive={this.state.isSuccess}>
+            You have been added to the list!
+          </SuccessMessage>
         </Form>
       </FormWrapper>
     );
