@@ -1,5 +1,5 @@
-const mailgun = require('mailgun-js')({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
 const API_KEY = process.env.MAILGUN_API_KEY;
+const mailgun = require('mailgun-js')({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
 
 export const handler = async (event, context, callback) => {
   const { email } = JSON.parse(event.body).payload;
@@ -15,5 +15,3 @@ export const handler = async (event, context, callback) => {
   });
 
 };
-
-
