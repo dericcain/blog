@@ -110,7 +110,7 @@ const mailgun = __webpack_require__(113)({ apiKey: API_KEY, domain: 'subscribe.d
 
 const handler = exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context, callback) {
-    console.log(JSON.parse(event.body));
+    console.log(JSON.parse(event.body).payload);
 
     const { email } = JSON.parse(event.body);
 
