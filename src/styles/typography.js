@@ -31,6 +31,11 @@ const typography = new Typography({
         ...adjustFontSizeTo('13px'),
       }
     },
+    blockquote: {
+      padding: '18px',
+      margin: '18px 0',
+      fontStyle: 'italic',
+    }
   }),
 });
 

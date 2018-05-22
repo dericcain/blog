@@ -11,6 +11,12 @@ injectGlobal`
   body {
     border-top: 4px solid ${grey.default};
   }
+  
+  blockquote {
+    border-left: 3px solid ${grey.light};
+    margin-left: 20px;
+    padding: 0;
+  }
 `;
 
 const PageWrapper = styled.main`
