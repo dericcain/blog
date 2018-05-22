@@ -1,21 +1,23 @@
 const API_KEY = process.env.MAILGUN_API_KEY;
-const URL = `https://api:${API_KEY}@api.mailgun.net/v3/subscribe.dericcain.com/lists/followers@subscribe.dericcain.com/members`;
+const mailgun = require('mailgun-js')({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
 
-exports.handler = ({ queryStringParameters, path }, context, callback) => {
-  console.log(queryStringParameters);
-  console.log(path);
+export const handler = async (event, context, callback) => {
+  console.log(JSON.parse(event.body));
 
-  const email = body.payload.email;
+  const { email } = JSON.parse(event.body);
 
-  fetch(URL, {
-    method: 'POST',
-    body: JSON.stringify({ address: email }),
-  }).finally(() => {
+  const list = mailgun.lists(`followers@subscribe.dericcain.com`);
+
+  list.members().create({ address: email }, (error, data) => {
+    if (error) throw new Error(error);
+    console.log(data);
+
     callback(null, {
       statusCode: 200,
-      body: 'Done!'
-    });
+      body: data,
+    })
   });
+
 };
 
 
