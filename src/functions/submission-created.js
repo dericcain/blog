@@ -105,21 +105,17 @@ Object.defineProperty(exports, "__esModule", {
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-const API_KEY = process.env.MAILGUN_API_KEY;
 const mailgun = __webpack_require__(113)({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
+const API_KEY = process.env.MAILGUN_API_KEY;
 
 const handler = exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context, callback) {
-    console.log(JSON.parse(event.body).payload);
-
-    const { email } = JSON.parse(event.body);
+    const { email } = JSON.parse(event.body).payload;
 
     const list = mailgun.lists(`followers@subscribe.dericcain.com`);
 
     list.members().create({ address: email }, function (error, data) {
       if (error) throw new Error(error);
-      console.log(data);
-
       callback(null, {
         statusCode: 200,
         body: data
