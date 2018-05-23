@@ -3,7 +3,7 @@ path: "/using-netlify-forms-and-functions"
 date: "2018-05-22"
 title: "Using Netlify Forms and Functions"
 ---
-[Netlify](https://www.netlify.com/) is awesome! And, it is free. So, I decided to give them a shot a build a static site that uses their [Forms](https://www.netlify.com/docs/form-handling) and [Functions](https://www.netlify.com/docs/functions/) service. The objective was to create a form that would allow users to sign up for a newsletter. Here is the flow
+[Netlify](https://www.netlify.com/) is awesome! And, it is free. So, I decided to give them a shot a build a static site that uses their [Forms](https://www.netlify.com/docs/form-handling) and [Functions](https://www.netlify.com/docs/functions/) service. The objective was to create a form that would allow users to sign up for a newsletter. Here is the flow:
 
 1. User enters email and submits form
 2. The form data is sent to Netlify using their Forms feature

@@ -26,7 +26,6 @@ const PageWrapper = styled.main`
   margin: 0 auto;
   padding: 32px 9px;
   position: relative;
-  
 `;
 
 const Layout = ({ children, data }) => (

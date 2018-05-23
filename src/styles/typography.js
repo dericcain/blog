@@ -24,7 +24,7 @@ const typography = new Typography({
   bodyColor: black,
   overrideStyles: ({ adjustFontSizeTo }) => ({
     a: {
-      textDecoration: 'none',
+      color: red.default,
     },
     '@media (max-width: 768px)': {
       html: {
