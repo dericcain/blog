@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import styled from 'styled-components';
 import Link from 'gatsby-link';
 import BackIcon from 'react-icons/lib/io/android-arrow-back';
+import { DiscussionEmbed } from 'disqus-react';
 
 import { grey } from '../styles/colors';
 
@@ -26,7 +27,13 @@ const BackButton = styled(BackIcon)`
 
 export default function Template({ data }) {
   const { markdownRemark } = data;
-  const { frontmatter, html } = markdownRemark;
+  const { frontmatter, html, id } = markdownRemark;
+  const disqusShortname = 'dericcain';
+  const disqusConfig = {
+    identifier: id,
+    title: frontmatter.title,
+  };
+
   return (
     <Fragment>
       <Title>{frontmatter.title}</Title>
@@ -40,6 +47,10 @@ export default function Template({ data }) {
         className="blog-post-content"
         dangerouslySetInnerHTML={{ __html: html }}
       />
+      <DiscussionEmbed
+        shortname={disqusShortname}
+        config={disqusConfig}
+      />
     </Fragment>
   );
 }
@@ -48,6 +59,7 @@ export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
     markdownRemark(frontmatter: { path: { eq: $path } }) {
       html
+      id
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         path
