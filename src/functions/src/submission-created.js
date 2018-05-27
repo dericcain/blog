@@ -3,15 +3,16 @@ const mailgun = require('mailgun-js')({ apiKey: API_KEY, domain: 'subscribe.deri
 
 export const handler = async (event, context, callback) => {
   const { email } = JSON.parse(event.body).payload;
-
   const list = mailgun.lists(`followers@subscribe.dericcain.com`);
 
   list.members().create({ address: email }, (error, data) => {
-    if (error) throw new Error(error);
+    if (error) {
+      callback(error);
+    }
+
     callback(null, {
       statusCode: 200,
-      body: data,
-    })
+      body: JSON.stringify(data),
+    });
   });
-
 };

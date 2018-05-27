@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 229);
+/******/ 	return __webpack_require__(__webpack_require__.s = 228);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -53930,8 +53930,7 @@ module.exports = {
 
 
 /***/ }),
-/* 228 */,
-/* 229 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53940,33 +53939,26 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
-
 const API_KEY = process.env.MAILGUN_API_KEY;
 const mailgun = __webpack_require__(76)({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
 
-const handler = exports.handler = (() => {
-  var _ref = _asyncToGenerator(function* (event, context, callback) {
-    const { email } = JSON.parse(event.body).payload;
-    const list = mailgun.lists(`followers@subscribe.dericcain.com`);
+const handler = exports.handler = (event, context, callback) => {
+  if (event.httpMethod !== 'POST') {
+    callback('No path here bro...');
+  }
 
-    list.members().create({ address: email }, function (error, data) {
-      if (error) {
-        callback(error);
-      }
+  const list = mailgun.lists(`followers@subscribe.dericcain.com`);
+  list.members().list((error, members) => {
+    if (error) {
+      callback(error);
+    }
 
-      callback(null, {
-        statusCode: 200,
-        body: JSON.stringify(data)
-      });
+    callback(null, {
+      statusCode: 200,
+      body: JSON.stringify(members)
     });
   });
-
-  return function handler(_x, _x2, _x3) {
-    return _ref.apply(this, arguments);
-  };
-})();
+};
 
 /***/ })
 /******/ ])));

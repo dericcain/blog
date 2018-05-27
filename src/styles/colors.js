@@ -14,4 +14,5 @@ export const grey = {
   light: '#cfbcbf',
 };
 
-export const green = '#27ae60';
+export const success = '#27ae60';
+export const error = '#e74c3c';

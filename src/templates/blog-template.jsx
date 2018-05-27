@@ -26,9 +26,7 @@ const BackButton = styled(BackIcon)`
   margin-bottom: 6px;
 `;
 
-export default function Template({ data }) {
-  const { markdownRemark } = data;
-  const { frontmatter, html, id } = markdownRemark;
+const Template = ({ data: { markdownRemark: { frontmatter, html, id }} }) => {
   const disqusShortname = 'dericcain';
   const disqusConfig = {
     identifier: id,
@@ -54,7 +52,9 @@ export default function Template({ data }) {
       />
     </Fragment>
   );
-}
+};
+
+export default pure(Template);
 
 export const pageQuery = graphql`
   query BlogPostByPath($path: String!) {
