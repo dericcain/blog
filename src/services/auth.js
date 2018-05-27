@@ -17,7 +17,7 @@ class Auth {
     try {
       const user = await this.auth.currentUser();
       const email = get(user, 'email');
-      return !!user  && email === 'deric.cain@gmail.com';
+      return !!user && email === 'deric.cain@gmail.com';
     } catch (e) {
       console.error(e);
       return false;
@@ -27,15 +27,11 @@ class Auth {
   wrap({ component: Component }) {
     this.check().then(isLoggedIn => {
       if (!isLoggedIn) {
-
       }
 
-      return (<Component />)
-    })
+      return <Component />;
+    });
   }
-
 }
 
 export default new Auth();
-
-

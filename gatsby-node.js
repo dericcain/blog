@@ -5,10 +5,15 @@
  */
 const path = require('path');
 
+exports.modifyBabelrc = ({ babelrc }) => ({
+  ...babelrc,
+  plugins: babelrc.plugins.concat(['transform-regenerator']),
+});
+
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;
 
-  const blogPostTemplate = path.resolve(`src/templates/blog-template.jsx`);
+  const blogPostTemplate = path.resolve(`src/templates/blog-template.js`);
 
   return graphql(`
     {

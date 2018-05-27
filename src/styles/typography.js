@@ -9,12 +9,12 @@ const typography = new Typography({
   googleFonts: [
     {
       name: 'Lora',
-      styles: ['400']
+      styles: ['400'],
     },
     {
       name: 'Poppins',
-      styles: ['300', '300i']
-    }
+      styles: ['300', '300i'],
+    },
   ],
   headerFontFamily: ['Lora', 'serif'],
   bodyFontFamily: ['Poppins', 'sans-serif'],
@@ -30,13 +30,13 @@ const typography = new Typography({
     '@media (max-width: 768px)': {
       html: {
         ...adjustFontSizeTo('13px'),
-      }
+      },
     },
     blockquote: {
       padding: '18px',
       margin: '18px 0',
       fontStyle: 'italic',
-    }
+    },
   }),
 });
 

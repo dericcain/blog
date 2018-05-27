@@ -32,7 +32,7 @@ export const Input = styled.input`
   border: 1px solid ${grey.light};
   padding: 12px;
   height: 52px;
-  
+
   &:focus {
     border: 1px solid ${grey.default};
     outline: none;
@@ -43,7 +43,7 @@ export const SuccessMessage = styled.div`
   padding: 12px;
   background: ${success};
   color: #fff;
-  display: ${({ isActive }) => isActive ? 'flex' : 'none'};
+  display: ${({ isActive }) => (isActive ? 'flex' : 'none')};
   justify-content: center;
   align-items: center;
 `;

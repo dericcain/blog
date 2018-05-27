@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Deric Cain <deric.cain@gmail.com>",
   "dependencies": {
-    "axios": "^0.18.0",
+    "babel-plugin-transform-regenerator": "^6.26.0",
     "date-fns": "^1.29.0",
     "disqus-react": "^1.0.5",
     "gatsby": "^1.9.247",
@@ -21,19 +21,18 @@
     "gatsby-source-filesystem": "^1.5.36",
     "gatsby-transformer-remark": "^1.7.41",
     "gotrue-js": "^0.9.20",
+    "lodash": "^4.17.10",
     "mailgun-js": "^0.18.0",
-    "netlify-identity-widget": "^1.4.12",
     "prismjs": "^1.14.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-helmet": "^5.2.0",
     "react-icons": "^2.2.7",
+    "react-router-dom": "^4.2.2",
     "react-typography": "^0.16.13",
     "recompose": "^0.27.0",
     "styled-components": "^3.2.6",
-    "typography": "^0.16.17",
-    "react-router-dom": "latest",
-    "lodash": "latest"
+    "typography": "^0.16.17"
   },
   "keywords": [
     "blog"
@@ -41,9 +40,9 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "build:functions": "netlify-lambda build ./src/functions/src",
+    "build:functions": "netlify-lambda build ./functions/src",
     "start": "gatsby develop",
-    "start:functions": "netlify-lambda serve ./src/functions/src",
+    "start:functions": "netlify-lambda serve ./functions/src",
     "format": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

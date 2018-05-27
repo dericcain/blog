@@ -73,11 +73,9 @@ class Subscribe extends Component {
           </HoneypotField>
           <Label htmlFor="email">
             Email
-            <Input type="email" id="email" name="email" onChange={this.handleOnChange} />
+            <Input type="email" id="email" name="email" onChange={this.handleOnChange}/>
           </Label>
-          <Button type="submit" disabled={this.state.buttonIsDisabled}>
-            Sign up!
-          </Button>
+          <Button type="submit" disabled={this.state.buttonIsDisabled}>Sign up!</Button>
           <SuccessMessage isActive={this.state.isSuccess}>
             You have been added to the list!
           </SuccessMessage>

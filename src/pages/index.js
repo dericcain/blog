@@ -5,7 +5,7 @@ import GithubIcon from 'react-icons/lib/io/social-github';
 import TwitterIcon from 'react-icons/lib/io/social-twitter';
 import LinkedInIcon from 'react-icons/lib/io/social-linkedin';
 
-import Posts from '../components/posts';
+import Posts from '../components/posts/index';
 import Header from '../components/Header';
 import { grey } from '../styles/colors';
 
