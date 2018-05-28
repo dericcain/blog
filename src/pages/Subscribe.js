@@ -10,7 +10,7 @@ class Subscribe extends Component {
     buttonIsDisabled: false,
   };
 
-  handleSubmit = async e => {
+  handleSubmit = e => {
     e.preventDefault();
 
     this.setState({
@@ -18,25 +18,24 @@ class Subscribe extends Component {
       buttonIsDisabled: true,
     });
 
-    try {
-      await fetch('/.netlify/functions/add-subscriber', {
+
+      fetch('/.netlify/functions/add-subscriber', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: this.state.email,
         }),
+      }).then(() => {
+        this.setState({
+          isSuccess: true,
+          email: '',
+        });
+      }).catch(e => {
+        this.setState({ error: 'There was an error. Sorry.' });
+        throw new Error(e);
+      }).finally(() => {
+        this.setState({ buttonIsDisabled: false });
       });
-
-      this.setState({
-        isSuccess: true,
-        email: '',
-      });
-    } catch (e) {
-      this.setState({ error: 'There was an error. Sorry.' });
-      throw new Error(e);
-    } finally {
-      this.setState({ buttonIsDisabled: false });
-    }
   };
 
   handleOnChange = ({ currentTarget }) => {
