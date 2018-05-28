@@ -1,22 +1,16 @@
 import React, { Component } from 'react';
 
-import { FormWrapper, HoneypotField, Form, Input, Label, SuccessMessage } from '../components/Form';
+import { FormWrapper, Form, Input, Label, SuccessMessage } from '../components/Form';
 import Button from '../components/Button';
-
-const encode = data =>
-  Object.keys(data)
-    .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key]))
-    .join('&');
 
 class Subscribe extends Component {
   state = {
     email: '',
-    'bot-field': '',
     isSuccess: false,
     buttonIsDisabled: false,
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
 
     this.setState({
@@ -24,27 +18,25 @@ class Subscribe extends Component {
       buttonIsDisabled: true,
     });
 
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: encode({
-        'form-name': 'subscribe',
-        email: this.state.email,
-        'bot-field': this.state['bot-field'],
-      }),
-    })
-      .then(() => {
-        this.setState({
-          isSuccess: true,
-          email: '',
-        });
-      })
-      .catch(error => {
-        throw new Error(error);
-      })
-      .finally(() => {
-        this.setState({ buttonIsDisabled: false });
+    try {
+      await fetch('/.netlify/functions/add-subscriber', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: this.state.email,
+        }),
       });
+
+      this.setState({
+        isSuccess: true,
+        email: '',
+      });
+    } catch (e) {
+      this.setState({ error: 'There was an error. Sorry.' });
+      throw new Error(e);
+    } finally {
+      this.setState({ buttonIsDisabled: false });
+    }
   };
 
   handleOnChange = ({ currentTarget }) => {
@@ -59,23 +51,14 @@ class Subscribe extends Component {
           I will gladly send you an email when I write new content. I also vow to protect your email
           address and will never share it with anyone.
         </p>
-        <Form
-          name="subscribe"
-          data-netlify-honeypot="bot-field"
-          method="POST"
-          data-netlify="true"
-          onSubmit={this.handleSubmit}
-        >
-          <HoneypotField>
-            <label htmlFor="bot-field">
-              <input type="text" id="bot-field" name="bot-field" onChange={this.handleOnChange} />
-            </label>
-          </HoneypotField>
+        <Form name="subscribe" method="POST" onSubmit={this.handleSubmit}>
           <Label htmlFor="email">
             Email
-            <Input type="email" id="email" name="email" onChange={this.handleOnChange}/>
+            <Input type="email" id="email" name="email" onChange={this.handleOnChange} />
           </Label>
-          <Button type="submit" disabled={this.state.buttonIsDisabled}>Sign up!</Button>
+          <Button type="submit" disabled={this.state.buttonIsDisabled}>
+            Sign up!
+          </Button>
           <SuccessMessage isActive={this.state.isSuccess}>
             You have been added to the list!
           </SuccessMessage>

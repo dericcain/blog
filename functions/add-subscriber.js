@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 230);
+/******/ 	return __webpack_require__(__webpack_require__.s = 228);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -53930,9 +53930,7 @@ module.exports = {
 
 
 /***/ }),
-/* 228 */,
-/* 229 */,
-/* 230 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53949,7 +53947,7 @@ const mailgun = __webpack_require__(76)({ apiKey: API_KEY, domain: 'subscribe.de
 
 const handler = exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context, callback) {
-    const { email } = JSON.parse(event.body).payload;
+    const { email } = JSON.parse(event.body);
     const list = mailgun.lists(`followers@subscribe.dericcain.com`);
 
     list.members().create({ address: email }, function (error, data) {
