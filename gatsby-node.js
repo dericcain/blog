@@ -1,25 +1,4 @@
-/**
- * Implement Gatsby's Node APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/node-apis/
- */
 const path = require('path');
-
-// exports.modifyBabelrc = ({ babelrc }) => ({
-//   ...babelrc,
-//   plugins: babelrc.plugins.concat(['transform-regenerator']),
-// });
-
-exports.modifyWebpackConfig = (config, env) => {
-  if (env === 'build-javascript' || env === 'develop') {
-    const previous = config.resolve().entry
-    config._config.entry = []
-    config.merge({
-      entry: ['babel-polyfill'].concat(previous)
-    })
-  }
-  return config
-};
 
 exports.createPages = ({ boundActionCreators, graphql }) => {
   const { createPage } = boundActionCreators;

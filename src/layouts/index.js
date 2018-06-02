@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import React, { Fragment } from 'react';
 import Helmet from 'react-helmet';
 import { pure } from 'recompose';
@@ -7,6 +8,7 @@ import Link from 'gatsby-link';
 
 import { grey, red } from '../styles/colors';
 import typography from '../styles/typography';
+
 require('../styles/syntax.css');
 
 injectGlobal`

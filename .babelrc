@@ -1,0 +1,15 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "browsers": ["cover 95%", "not ie 11", "not op_mini all"]
+      }
+    }],
+    "react",
+    "stage-1",
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-regenerator"
+  ]
+}

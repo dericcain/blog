@@ -49,8 +49,12 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-regenerator": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
     "husky": "^0.14.3",
     "netlify-lambda": "^0.4.0",
     "prettier": "^1.12.1"
