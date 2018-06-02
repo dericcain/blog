@@ -53947,8 +53947,16 @@ const mailgun = __webpack_require__(76)({ apiKey: API_KEY, domain: 'subscribe.de
 
 const handler = exports.handler = (() => {
   var _ref = _asyncToGenerator(function* (event, context, callback) {
+    if (event.httpMethod !== 'POST') {
+      callback(null, {
+        statusCode: 200
+      });
+    }
+
     const { email } = JSON.parse(event.body);
     const list = mailgun.lists(`followers@subscribe.dericcain.com`);
+
+    console.log(email);
 
     list.members().create({ address: email }, function (error, data) {
       if (error) {

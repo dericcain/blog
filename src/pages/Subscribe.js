@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { FormWrapper, Form, Input, Label, SuccessMessage } from '../components/Form';
 import Button from '../components/Button';
+import { ADD_SUBSCRIBER } from '../services/routes';
 
 class Subscribe extends Component {
   state = {
@@ -10,7 +11,7 @@ class Subscribe extends Component {
     buttonIsDisabled: false,
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
 
     this.setState({
@@ -18,24 +19,27 @@ class Subscribe extends Component {
       buttonIsDisabled: true,
     });
 
-
-      fetch('/.netlify/functions/add-subscriber', {
+    try {    
+      const response = await fetch(ADD_SUBSCRIBER, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           email: this.state.email,
         }),
-      }).then(() => {
-        this.setState({
-          isSuccess: true,
-          email: '',
-        });
-      }).catch(e => {
-        this.setState({ error: 'There was an error. Sorry.' });
-        throw new Error(e);
-      }).finally(() => {
-        this.setState({ buttonIsDisabled: false });
       });
+
+      console.log(response);
+
+      this.setState({
+        isSuccess: true,
+        email: '',
+      });
+    } catch (error) {
+      this.setState({ error: 'There was an error. Sorry.' });
+      throw new Error(error);
+    } finally {
+      this.setState({ buttonIsDisabled: false });
+    }
   };
 
   handleOnChange = ({ currentTarget }) => {
