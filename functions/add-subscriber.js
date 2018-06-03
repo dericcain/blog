@@ -53942,38 +53942,61 @@ Object.defineProperty(exports, "__esModule", {
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-const API_KEY = process.env.MAILGUN_API_KEY;
-const mailgun = __webpack_require__(76)({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
+var API_KEY = process.env.MAILGUN_API_KEY;
+var mailgun = __webpack_require__(76)({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
 
-const handler = exports.handler = (() => {
-  var _ref = _asyncToGenerator(function* (event, context, callback) {
-    if (event.httpMethod !== 'POST') {
-      callback(null, {
-        statusCode: 200
-      });
-    }
+var handler = exports.handler = function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event, context, callback) {
+    var _JSON$parse, email, list, subscribed;
 
-    const { email } = JSON.parse(event.body);
-    const list = mailgun.lists(`followers@subscribe.dericcain.com`);
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            if (event.httpMethod !== 'POST') {
+              console.log('Non-POST event');
+              callback(null, {
+                statusCode: 200
+              });
+            }
 
-    console.log(email);
+            _JSON$parse = JSON.parse(event.body), email = _JSON$parse.email;
+            list = mailgun.lists('followers@subscribe.dericcain.com');
 
-    list.members().create({ address: email }, function (error, data) {
-      if (error) {
-        callback(error);
+
+            console.log('The email is: ' + email);
+            subscribed = {
+              address: email,
+              subscribed: true
+            };
+
+            list.members().create(subscribed, function (error, data) {
+              if (error) {
+                console.log('Something happened: ' + error);
+                callback(error, {
+                  statusCode: 400
+                });
+              }
+
+              console.log('Email was added: ' + JSON.stringify(data));
+              callback(null, {
+                statusCode: 200,
+                body: JSON.stringify(data)
+              });
+            });
+
+          case 6:
+          case 'end':
+            return _context.stop();
+        }
       }
-
-      callback(null, {
-        statusCode: 200,
-        body: JSON.stringify(data)
-      });
-    });
-  });
+    }, _callee, undefined);
+  }));
 
   return function handler(_x, _x2, _x3) {
     return _ref.apply(this, arguments);
   };
-})();
+}();
 
 /***/ })
 /******/ ])));

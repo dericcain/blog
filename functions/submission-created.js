@@ -53944,30 +53944,43 @@ Object.defineProperty(exports, "__esModule", {
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
-const API_KEY = process.env.MAILGUN_API_KEY;
-const mailgun = __webpack_require__(76)({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
+var API_KEY = process.env.MAILGUN_API_KEY;
+var mailgun = __webpack_require__(76)({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
 
-const handler = exports.handler = (() => {
-  var _ref = _asyncToGenerator(function* (event, context, callback) {
-    const { email } = JSON.parse(event.body).payload;
-    const list = mailgun.lists(`followers@subscribe.dericcain.com`);
+var handler = exports.handler = function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event, context, callback) {
+    var email, list;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            email = JSON.parse(event.body).payload.email;
+            list = mailgun.lists('followers@subscribe.dericcain.com');
 
-    list.members().create({ address: email }, function (error, data) {
-      if (error) {
-        callback(error);
+
+            list.members().create({ address: email }, function (error, data) {
+              if (error) {
+                callback(error);
+              }
+
+              callback(null, {
+                statusCode: 200,
+                body: JSON.stringify(data)
+              });
+            });
+
+          case 3:
+          case 'end':
+            return _context.stop();
+        }
       }
-
-      callback(null, {
-        statusCode: 200,
-        body: JSON.stringify(data)
-      });
-    });
-  });
+    }, _callee, undefined);
+  }));
 
   return function handler(_x, _x2, _x3) {
     return _ref.apply(this, arguments);
   };
-})();
+}();
 
 /***/ })
 /******/ ])));

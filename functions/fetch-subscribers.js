@@ -53940,16 +53940,16 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-const API_KEY = process.env.MAILGUN_API_KEY;
-const mailgun = __webpack_require__(76)({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
+var API_KEY = process.env.MAILGUN_API_KEY;
+var mailgun = __webpack_require__(76)({ apiKey: API_KEY, domain: 'subscribe.dericcain.com' });
 
-const handler = exports.handler = (event, context, callback) => {
+var handler = exports.handler = function handler(event, context, callback) {
   if (event.httpMethod !== 'POST') {
     callback('No path here bro...');
   }
 
-  const list = mailgun.lists(`followers@subscribe.dericcain.com`);
-  list.members().list((error, members) => {
+  var list = mailgun.lists('followers@subscribe.dericcain.com');
+  list.members().list(function (error, members) {
     if (error) {
       callback(error);
     }
