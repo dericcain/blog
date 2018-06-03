@@ -1,8 +1,24 @@
 import React, { Component } from 'react';
+import Link from 'gatsby-link';
+import styled from 'styled-components';
 
 import { FormWrapper, Form, Input, Label, SuccessMessage } from '../components/Form';
 import Button from '../components/Button';
 import { ADD_SUBSCRIBER } from '../services/routes';
+import { grey } from '../styles/colors';
+
+const GoBack = styled(Link)`
+  display: block;
+  text-align: center;
+  background: none;
+  border: none;
+  color: ${grey.default};
+  padding: 12px;
+  font-weight: 300;
+  margin-bottom: 12px;
+  height: 52px;
+  width: 100%;
+`;
 
 class Subscribe extends Component {
   state = {
@@ -62,6 +78,7 @@ class Subscribe extends Component {
           <Button type="submit" disabled={this.state.buttonIsDisabled}>
             Sign up!
           </Button>
+          <GoBack to="/">Go back</GoBack>
           <SuccessMessage isActive={this.state.isSuccess}>
             You have been added to the list!
           </SuccessMessage>
