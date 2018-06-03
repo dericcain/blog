@@ -16,12 +16,22 @@ const Excerpt = styled.article`
 
 const Top = styled.div`
   display: flex;
+
+  @media (max-width: 520px) {
+    flex-direction: column;
+  }
 `;
 
 const Title = styled.h3`
   display: flex;
   flex: 5;
   align-items: flex-start;
+
+  @media (max-width: 520px) {
+    justify-content: flex-start;
+    flex: 1;
+    margin-bottom: 3px;
+  }
 `;
 
 const Date = styled.span`
@@ -32,6 +42,12 @@ const Date = styled.span`
   font-size: 13px;
   font-style: italic;
   color: ${grey.default};
+
+  @media (max-width: 520px) {
+    justify-content: flex-start;
+    flex: 1;
+    margin-bottom: 18px;
+  }
 `;
 
 const Body = styled.div``;
