@@ -1,50 +1,80 @@
 module.exports = {
   siteMetadata: {
-    title: 'Deric Cain - Blog',
+    title: `Some Technical Thoughts`,
+    author: `Deric Cain`,
+    description: `Javascript stuff by Deric Cain`,
+    siteUrl: `https://dericcain.com/`,
+    social: {
+      twitter: `dericcain`,
+    },
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
-    'gatsby-plugin-react-next',
-    'gatsby-plugin-styled-components',
-    'gatsby-plugin-typography',
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        path: `${__dirname}/posts`,
-        name: 'markdown-pages',
+        path: `${__dirname}/content/blog`,
+        name: `blog`,
       },
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: `gatsby-source-filesystem`,
       options: {
-        plugins: [{ resolve: `gatsby-remark-prismjs` }],
+        path: `${__dirname}/content/assets`,
+        name: `assets`,
       },
     },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          `gatsby-remark-prismjs`,
+          `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-smartypants`,
+        ],
+      },
+    },
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
         trackingId: 'UA-58169396-1',
-        head: false,
       },
     },
+    `gatsby-plugin-feed`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: 'Deric Cain',
-        short_name: 'Deric Cain',
-        start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#683E44',
-        display: 'minimal-ui',
-        icon: 'src/images/icon.png',
+        name: `Deric Cain`,
+        short_name: `Deric Cain`,
+        start_url: `/`,
+        background_color: `#ffffff`,
+        theme_color: `#ba000d`,
+        display: `minimal-ui`,
+        // TODO: Update this icon
+        icon: `content/assets/logo.png`,
       },
     },
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-plugin-offline`,
+      resolve: `gatsby-plugin-typography`,
       options: {
-        cacheId: `dericcain.com-offline`,
+        pathToConfigModule: `src/utils/typography`,
       },
     },
-    `gatsby-plugin-netlify`,
+    'gatsby-plugin-netlify',
   ],
 };

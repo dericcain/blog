@@ -2,6 +2,7 @@
 path: "/7-ways-for-beginner-programmers-to-become-better-faster"
 date: "2017-06-04"
 title: "Beginner programmer, no more"
+description: "How to progress from being a beginner programmer."
 ---
 
 I know what it’s like to be a beginner in software development. I remember having no idea what I was doing (and still don’t sometimes 😃) and it took all the effort I had just to end up with some #basic code that performed the simplest of tasks. I spent countless hours debugging small issues that I was sure I would never figure out, all the while wondering why I was even bothering learning web development since I, obviously, was not that good at it.
